@@ -1,0 +1,23 @@
+{
+  "name": "health-app-backend",
+  "version": "1.0.0",
+  "description": "Demo app; tracks blood pressure and water intake",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "watchexec -r --changes-only npm start",
+    "test": "echo \"HELL NAH, WE AINT NEED NO TESTS!\""
+  },
+  "author": "J. Austin Hughey <jah@jah.io>",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^2.24.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "luxon": "^1.27.0",
+    "morgan": "^1.10.0",
+    "prisma": "^2.24.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {}
+}
