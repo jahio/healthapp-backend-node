@@ -1,4 +1,5 @@
 const db = require('../lib/db')
+const log = require('../lib/log')
 
 class BP {
   constructor(diastolic, systolic, heartrate) {
@@ -22,16 +23,18 @@ class BP {
           }
         }
       })
+      log.debug(bp_entries)
       return bp_entries
     } catch(e) {
-      console.error(e.message, e.stack)
+      log.error(e)
       throw(e)
     }
   }
 
   async save() {
     try {
-      var bp = await db.bp_entry.upsert({
+      log.debug(this)
+      await db.bp_entry.upsert({
         where: { id: this.id },
         update: {
           diastolic: this.diastolic,
@@ -44,9 +47,9 @@ class BP {
           heartrate: this.heartrate
         }
       })
-      return bp
+      log.debug(this)
     } catch(e) {
-      console.error(e.message, e.stack)
+      log.error(e)
       throw(e)
     }
   }
@@ -60,9 +63,10 @@ class BP {
           heartrate: heartrate
         }
       })
+      log.debug(bp)
       return bp
     } catch(e) {
-      console.error(e.message, e.stack)
+      log.error(e)
       throw(e)
     }
   }

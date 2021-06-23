@@ -1,4 +1,5 @@
 require('dotenv').config()
+const log = require('../lib/log')
 const { DateTime } = require('luxon')
 const BP = require('../models/bp')
 var express = require('express')
@@ -20,7 +21,7 @@ router.post('/', async function(req, res, next) {
     var bp = await BP.create(req.body.diastolic, req.body.systolic, req.body.heartrate)
     res.json({ bp: bp })
   } catch(e) {
-    console.error(e.message, e.stack)
+    log.error(e)
     next(e)
   }
 })
@@ -36,7 +37,7 @@ router.get('/from/:oldest/to/:newest', async function(req, res, next){
     var bp_entries = await BP.between(oldest, newest)
     res.json({ bp_entries: bp_entries })
   } catch(e) {
-    console.error(e.message, e.stack)
+    log.error(e)
     next(e)
   }
 })

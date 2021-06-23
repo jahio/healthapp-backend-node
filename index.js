@@ -4,17 +4,18 @@
   only. Needs a corresponding front-end to be useful.
 */
 
-// // Set up dotenv for using .env files
-// require('dotenv').config()
-//
-// // Date and time library
-// const { DateTime } = require('luxon')
-//
-// // Fetch the models
-// const BP = require('./models/bp')
-//
-// // DB Handler
-// const db = require('./lib/db')
+// Logger: use it like `log.error('some str'), log.info('info here')` etc
+const log = require('./lib/log')
+
+const express = require('express')
+const app = express()
+
+// This is a utility function to give us debug info on requests
+function logRequest(req, res, next) {
+  log.debug(req.params)
+  log.debug(req.body)
+  next()
+}
 
 // Controllers
 const IndexController = require('./controllers/index')
@@ -28,22 +29,12 @@ function setContentType(req, res, next) {
   next()
 }
 
-// Set up express, our HTTP layer, and morgan, the logging layer
-const express = require('express')
-const morgan = require('morgan')
-const app = express()
-app.use(morgan('combined'))
+app.use(logRequest)
 app.use(setContentType)
 app.use(express.json())
 app.use('/', IndexController)
 app.use('/bp', BPController)
 app.use('/water', WaterController)
-// app.use((err, req, res, next) => {
-//   const statusCode = err.statusCode || 500
-//   console.error(err.message, err.stack)
-//   res.status(statusCode).json({status: statusCode, error: err.message})
-//   next(err)
-// })
 
 // Bind to a port and serve requests
 app.listen(process.env.PORT)

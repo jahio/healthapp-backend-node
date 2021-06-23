@@ -1,4 +1,5 @@
 require('dotenv').config()
+const log = require('../lib/log')
 const { DateTime } = require('luxon')
 const Water = require('../models/water')
 var express = require('express')
@@ -24,7 +25,7 @@ router.post('/', async function(req, res, next) {
     var water = await Water.create(Number(req.body.ml))
     res.json({ water_entry: water })
   } catch(e) {
-    console.error(e.message, e.stack)
+    log.error(e)
     next(e)
   }
 })
@@ -41,7 +42,7 @@ router.get('/from/:oldest/to/:newest', async function(req, res, next) {
     var water_entries = await Water.between(oldest, newest)
     res.json({ water_entries: water_entries })
   } catch(e) {
-    console.error(e.message, e.stack)
+    log.error(e)
     next(e)
   }
 })

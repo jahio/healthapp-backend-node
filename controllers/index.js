@@ -1,4 +1,5 @@
 require('dotenv').config()
+const log = require('../lib/log')
 const { DateTime } = require('luxon')
 const BP = require('../models/bp')
 const Water = require('../models/water')
@@ -13,7 +14,7 @@ router.get('/', async function(req, res, next) {
     var water_entries = await Water.between(old.toJSDate(), now.toJSDate())
     res.json({ bp: bp_entries, water_entries: water_entries })
   } catch(e) {
-    console.error(e.message, e.stack)
+    log.error(e)
     next(e)
   }
 })
