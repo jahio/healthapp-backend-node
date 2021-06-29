@@ -11,17 +11,17 @@ generator client {
 }
 
 model bp_entry {
-  id            String    @id              @default(uuid())    @db.Uuid
-  createdAt     DateTime  @default(now())  @db.Timestamptz
-  updatedAt     DateTime  @updatedAt       @db.Timestamptz
-  diastolic     Int
-  systolic      Int
-  heartrate     Int
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+  diastolic Int
+  systolic  Int
+  heartrate Int
 }
 
 model water_entry {
-  id            String    @id              @default(uuid())    @db.Uuid
-  createdAt     DateTime  @default(now())  @db.Timestamptz
-  updatedAt     DateTime  @updatedAt       @db.Timestamptz
-  ml            Int
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+  ml        Int
 }

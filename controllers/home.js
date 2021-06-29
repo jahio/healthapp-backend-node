@@ -1,27 +1,26 @@
 const BP = require('../models/bp')
 const Water = require('../models/water')
 const { DateTime } = require('luxon')
+const { Router }= require('express')
 
 class HomeController {
-  constructor(req, res, next) {
-    this.req = req ; this.res = res ; this.next = next
+  constructor(r) {
+    this.router = r
+    this.router.get('/', this.Home)
   }
-  static async getHome(req = this.req, res = this.res, next = this.next) {
+
+  async Home(req, res, next) {
     try {
-      const t = {
-        now: DateTime.utc().toJSDate(),
-        ago: now.minus({ days: 7 }).toJSDate()
-      }
+      const now = DateTime.utc()
+      const then = now.minus({ days: 7 })
       res.json({
-        bp: await BP.between(t.ago, t.now),
-        water_entries: await Water.between(t.ago, t.now)
+        bp: await BP.between(then.toJSDate(), now.toJSDate()),
+        water: await Water.between(then.toJSDate(), now.toJSDate())
       })
     } catch(e) {
-      throw e
-    } finally {
-      next()
+      next(e)
     }
   }
 }
 
-module.exports = HomeController
+module.exports = new HomeController(Router())
