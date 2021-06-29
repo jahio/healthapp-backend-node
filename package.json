@@ -1,9 +1,10 @@
 {
-  "name": "health-app-backend",
+  "name": "HealthApp",
   "version": "0.0.1",
-  "description": "Demo app; tracks blood pressure and water intake",
+  "description": "Demo API for CFSummit 2021. Tracks blood pressure and water intake.",
   "main": "start.js",
   "scripts": {
+    "doc": "apidoc -e ./node_modules -e ./prisma -p . -o _doc && apidoc-markdown -p _doc -o API.md && rm -rf _doc",
     "start": "node start.js",
     "dev": "echo 'Running watchexec; will SIGKILL the app and children on change and relaunch' && watchexec --verbose -s SIGKILL -r 'npm restart'",
     "test": "echo 'NO TESTS, ONLY ZUUL'"
@@ -26,8 +27,17 @@
     "pino-pretty": "^5.1.0",
     "prisma": ">=2.24.1 <2.25.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "apidoc": "^0.28.1",
+    "apidoc-markdown": "^5.2.3",
+    "dredd": "^14.0.0",
+    "markdown-it": "^12.0.6"
+  },
   "engines": {
     "node": ">10.0 <11.0"
+  },
+  "apidoc": {
+    "name": "HealthApp API Spec",
+    "description": "This is the documentation for the HealthApp API."
   }
 }
