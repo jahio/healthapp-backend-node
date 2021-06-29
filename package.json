@@ -1,6 +1,6 @@
 {
   "name": "health-app-backend",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Demo app; tracks blood pressure and water intake",
   "main": "start.js",
   "scripts": {
@@ -26,9 +26,7 @@
     "pino-pretty": "^5.1.0",
     "prisma": ">=2.24.1 <2.25.0"
   },
-  "devDependencies": {
-    "dredd": "^14.0.0"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">10.0 <11.0"
   }
