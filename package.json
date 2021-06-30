@@ -33,7 +33,7 @@
     "markdown-it": "^12.0.6"
   },
   "engines": {
-    "node": ">12.0 <13.0"
+    "node": ">14.0 <15.0"
   },
   "apidoc": {
     "name": "HealthApp API Spec",
