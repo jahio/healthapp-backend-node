@@ -17,7 +17,7 @@
   "repository": "https://github.com/jahio/healthapp-backend-node",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": ">=2.24.1 <2.25.0",
+    "@prisma/client": "^2.26.0",
     "chalk": "^4.1.1",
     "express": "^4.17.1",
     "express-pino-logger": "^6.0.0",
@@ -25,16 +25,15 @@
     "pino": "^6.11.3",
     "pino-http": "^5.5.0",
     "pino-pretty": "^5.1.0",
-    "prisma": ">=2.24.1 <2.25.0"
+    "prisma": "^2.26.0"
   },
   "devDependencies": {
     "apidoc": "^0.28.1",
     "apidoc-markdown": "^5.2.3",
-    "dredd": "^14.0.0",
     "markdown-it": "^12.0.6"
   },
   "engines": {
-    "node": ">10.0 <11.0"
+    "node": ">12.0 <13.0"
   },
   "apidoc": {
     "name": "HealthApp API Spec",
